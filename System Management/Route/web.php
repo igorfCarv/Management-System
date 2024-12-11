@@ -4,6 +4,7 @@ use App\Http\Response;
 use App\Controller\Pages;
 use App\Controller\Pages\HomeController;
 use App\Controller\Pages\AboutController;
+use App\Controller\Pages\TaskController;
 
 $orb->get('/',[
     function(){
@@ -15,8 +16,20 @@ $orb->get('/about',[
         return new Response(200,AboutController::getAbout());
     }
 ]); 
-$orb->get('/page/{id}/{action}',[
-    function($id, $action){
-        return new Response(200,'Página '.$id.' - '.$action);
+$orb->get('/tasks',[
+    function(){
+        return new Response(200,TaskController::getTask());
     }
 ]); 
+$orb->get('/tasks/create',[
+    function(){
+        return new Response(200,TaskController::create());
+    }
+]); 
+$orb->post('/tasks/create',[
+    function($request){
+        return new Response(200,TaskController::create());
+    }
+]); 
+
+

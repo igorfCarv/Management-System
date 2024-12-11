@@ -3,8 +3,11 @@ require __DIR__.'/vendor/autoload.php';
 
 use App\Http\Router;
 use App\Utils\View;
+use App\Common\Enviroment;
 
-define('URL','http://localhost:8000');
+Enviroment::load(__DIR__);
+
+define('URL',getenv('URL'));
 
 View::init([
     'URL' => URL

@@ -14,6 +14,6 @@ class AboutController extends TemplateController
             'name' => 'Sobre o sistema',
             'description' => 'Especificações do Projeto',
         ]);
-        return parent::getTemplate('About System', $content);
+        return parent::getTemplate('Sobre o Sistema', $content);
     }
 }

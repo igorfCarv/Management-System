@@ -14,6 +14,6 @@ class HomeController extends TemplateController
             'name' => $org->name,
             'description' => $org->description,
         ]);
-        return parent::getTemplate('Management System', $content);
+        return parent::getTemplate('Sistema de Gestão de Tarefas', $content);
     }
 }
