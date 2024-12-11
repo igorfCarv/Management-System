@@ -1,17 +1,17 @@
 <?php
-
-use App\Controller\Pages\HomeController;
-use App\Http\Router;
-use App\Http\Response;
-
 require __DIR__.'/vendor/autoload.php';
 
-echo HomeController::getHome();
+use App\Http\Router;
+use App\Utils\View;
+
 define('URL','http://localhost:8000');
 
-$orb = new Router(URL);
-$orb->get('/',[
-    function(){
-        return new Response(200,HomeController::getHome());
-    }
+View::init([
+    'URL' => URL
 ]);
+
+$orb = new Router(URL);
+
+include __DIR__.'/Route/web.php';
+
+$orb->run()->sendResponse();
