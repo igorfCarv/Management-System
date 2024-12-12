@@ -8,7 +8,7 @@ use \WilliamCosta\DatabaseManager\Pagination;
 class TaskController extends TemplateController
 {
 
-    private static function getTaskItems($request)
+    private static function getTaskItems($request, &$obPaginate)
     {
         $items = '';
 
@@ -17,9 +17,9 @@ class TaskController extends TemplateController
         $queryParams = $request->getQueryParams();
         $currentPage = $queryParams['page'] ?? 1;
 
-        $obPaginate = new Pagination($quantity,$currentPage,1);
+        $obPaginate = new Pagination($quantity,$currentPage,2);
 
-        $results = Task::getTask(null,'id DESC',$obPaginate->getLimit(2));
+        $results = Task::getTask(null,'id DESC',$obPaginate->getLimit());
 
         while($obTask = $results->fetchObject(Task::class)){
             $items .= View::render('pages/task/item', [
@@ -38,7 +38,8 @@ class TaskController extends TemplateController
     public static function getTask($request)
     {
         $content =  View::render('pages/task/show', [
-            'items' => self::getTaskItems($request),
+            'items' => self::getTaskItems($request,$obpaginate),
+            'pagination'=>parent::getPaginate($request,$obpaginate)
         ]);
         return parent::getTemplate('Listagem de Tarefas', $content);
     }

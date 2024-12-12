@@ -1,9 +1,13 @@
 <?php 
 require __DIR__.'/../vendor/autoload.php';
 
+use App\Http\Middleware\Maintenance;
+use App\Http\Middleware\RequireAdminLogin;
+use App\Http\Middleware\RequireAdminLogout;
 use App\Utils\View;
 use \WilliamCosta\DotEnv\Environment;
 use \WilliamCosta\DatabaseManager\Database;
+use \App\Http\Middleware\Queue as MiddlewareQueue;
 
 // Verificar se o .env está carregado corretamente
 try {
@@ -44,4 +48,13 @@ define('URL', $_ENV['URL'] ?? getenv('URL'));
 // Iniciar View
 View::init([
     'URL' => URL
+]);
+
+MiddlewareQueue::setMap([
+    'maintenance' => Maintenance::class,
+    'required-admin-logout' => RequireAdminLogout::class,
+    'required-admin-login' => RequireAdminLogin::class
+]);
+MiddlewareQueue::setDefault([
+    'maintenance'
 ]);

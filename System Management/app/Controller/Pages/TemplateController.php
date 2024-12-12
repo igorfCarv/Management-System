@@ -6,6 +6,32 @@ use App\Utils\View;
 class TemplateController
 {
 
+    public static function getPaginate($request,$obPaginate){
+        $pages = $obPaginate->getPages();
+        if(count($pages)<=1) return '';
+        $links = '';
+        $url = $request->getRouter()->getCurrentUrl();
+        
+        $queryParams = $request->getQueryParams();
+       
+        foreach($pages as $page){
+            $queryParams['page'] = $page['page'];
+
+            $link = $url.'?'.http_build_query($queryParams);
+           
+            $links .= View::render('pages/pagination/link',[
+                'page' => $page['page'],
+                'link' => $link,
+                'active' => $page['current'] ? 'active' : ''
+            ]);
+
+        }
+        return View::render('pages/pagination/box',[
+            'links' => $links
+        ]);
+    }
+
+
     private static function getHeader(){
         return View::render('components/header');
     }

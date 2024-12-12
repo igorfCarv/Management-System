@@ -2,6 +2,7 @@
 namespace App\Http;
 
 
+use App\Http\Middleware\Queue as MiddlewareQueue;
 use \Closure;
 use \Exception;
 use \ReflectionFunction;
@@ -34,6 +35,8 @@ class Router{
                 continue;
             }
         }
+
+        $params['middlewares'] = $params['middlewares'] ?? [];
 
         //variaveis da rota
         $params['variables'] = [];
@@ -120,9 +123,19 @@ class Router{
                  $args[$name] = $route['variables'][$name] ?? '';
              }
              
-            return call_user_func_array($route['controller'],$args);
+             return (new MiddlewareQueue($route['middlewares'],$route['controller'],$args))->next($this->request);
         }catch(Exception $e){
             return new Response($e->getCode(), $e->getMessage());
         }
+    }
+
+    public function getCurrentUrl(){
+        return $this->url.$this->getUri();
+    }
+
+    public function redirect($route){
+        $url = $this->url.$route;
+        header('location: '.$url);
+        exit;
     }
 }
