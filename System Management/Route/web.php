@@ -17,8 +17,8 @@ $orb->get('/about',[
     }
 ]); 
 $orb->get('/tasks',[
-    function(){
-        return new Response(200,TaskController::getTask());
+    function($request){
+        return new Response(200,TaskController::getTask($request));
     }
 ]); 
 $orb->get('/tasks/create',[

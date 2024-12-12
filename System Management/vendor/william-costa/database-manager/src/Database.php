@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database;
+namespace WilliamCosta\DatabaseManager;
 
 use \PDO;
 use \PDOException;
@@ -63,6 +63,7 @@ class Database{
     self::$user = $user;
     self::$pass = $pass;
     self::$port = $port;
+    
   }
 
   /**

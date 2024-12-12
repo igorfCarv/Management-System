@@ -1,7 +1,7 @@
 <?php 
 namespace App\Model\Entity;
 
-use App\Database\Database;
+use \WilliamCosta\DatabaseManager\Database;
 
 class Task
 {
@@ -20,6 +20,12 @@ class Task
             'created' => $this->created,
             'finished' => $this->finished
         ]);
+        
+        return true;
+    }
+
+    public static function getTask($where = null, $order = null, $limit = null, $field = '*'){
+        return (new Database('tasks'))->select($where,$order,$limit,$field);
     }
 
 }
