@@ -3,7 +3,7 @@
         'name' => 'teste/systemmanagement',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '944961cecc45e336221a2d51fb2b2dfbf39228b3',
+        'reference' => '0b0ca5b011194b7cf2868caac64438bdeb14c79f',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'teste/systemmanagement' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '944961cecc45e336221a2d51fb2b2dfbf39228b3',
+            'reference' => '0b0ca5b011194b7cf2868caac64438bdeb14c79f',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
