@@ -59,8 +59,8 @@ Certifique-se de ter instalado:
     -- Seleciona o banco de dados criado
     USE management_system;
 
-    -- Criação da tabela `user`
-    CREATE TABLE user (
+    -- Criação da tabela `users`
+    CREATE TABLE users (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
         email VARCHAR(255) NOT NULL UNIQUE,
@@ -69,16 +69,16 @@ Certifique-se de ter instalado:
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     );
 
-    -- Criação da tabela `task`
-    CREATE TABLE task (
+    -- Criação da tabela `tasks`
+    CREATE TABLE tasks (
         id INT AUTO_INCREMENT PRIMARY KEY,
         title VARCHAR(255) NOT NULL,
         description TEXT,
         status ENUM('pending', 'in_progress', 'completed') DEFAULT 'pending',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        finished_at TIMESTAMP NULL,
+        created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        finished TIMESTAMP NULL,
         user_id INT,
-        FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+        FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
 6. **Inicie o servidor local**:
    ```bash
