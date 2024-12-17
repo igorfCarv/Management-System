@@ -8,7 +8,7 @@ class RequireAdminLogout
 {
     public function handle($request,$next){
         if(SessionLoginAdmin::isLogged()){
-            $request->getRouter()->redirect('/admin');
+            $request->getRouter()->redirect('/admin/dashboard');
         }
         return $next($request);
     }

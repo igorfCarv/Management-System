@@ -1,10 +1,14 @@
 <div class="d-flex align-items-center justify-content-center">
     <div class="card my-5 text-dark text-center w-50">
         
-        <div class="card-header"><h1>Login</h1></div>
+        <div class="card-header"><h1>Cadastro de Usuário</h1></div>
         <div class="card-body">
             {{status}}
-            <form action="" method="post">
+            <form action="/register" method="post">
+                <div class="form-group">
+                    <label for="">Nome:</label>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="User" required autofocus>
+                </div>
                 <div class="form-group">
                     <label for="">E-mail</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="email@teste.com.br" required autofocus>
@@ -13,11 +17,11 @@
                     <label for="">Senha</label>
                     <input type="password" name="password" id="password" class="form-control" required >
                 </div>
-                <div class="d-flex flex-column">
-                    <a href="{{URL}}/register" class="my-3 text-dark text-decoration-none">Se ainda não tiver conta, por favor cadastre-se</a>
-                    <button type="submit" class="btn btn-success mt-1">Entrar</button>
+                <div  class="form-group">
+                    <label for="confirm_password">Confirmar Senha</label>
+                    <input type="password" id="confirm_password" name="confirm_password" class="form-control" required>
                 </div>
-                
+                <button type="submit" class="btn btn-success mt-3">Criar</button>
             </form>
         </div>
     </div>

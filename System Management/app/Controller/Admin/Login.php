@@ -10,9 +10,7 @@ class Login extends Page
 {
     public static function getLogin($request,$errorMessage = null)
     {
-        $status = !is_null($errorMessage) ? View::render('pages/admin/status', [
-            'mensagem' => $errorMessage
-        ]) : '';
+        $status = !is_null($errorMessage) ? Alert::getError($errorMessage) : '';
 
         $content = View::render('pages/admin/login', [
             'status' => $status
@@ -39,7 +37,7 @@ class Login extends Page
 
         SessionLoginAdmin::login($obUser);
 
-        $request->getRouter()->redirect('/admin');
+        $request->getRouter()->redirect('/admin/dashboard');
     }
 
     public static function setLogout($request){

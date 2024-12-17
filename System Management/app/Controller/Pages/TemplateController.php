@@ -2,6 +2,7 @@
 
 namespace App\Controller\Pages;
 use App\Utils\View;
+use App\Session\Admin\Login as SessionLoginAdmin;
 
 class TemplateController
 {
@@ -31,9 +32,14 @@ class TemplateController
         ]);
     }
 
-
     private static function getHeader(){
         return View::render('components/header');
+    }
+    private static function getHead(){
+        if(SessionLoginAdmin::isLogged()){
+            return View::render('components/header-admin');
+        }
+        return View::render('components/header'); 
     }
     private static function getFooter(){
         return View::render('components/footer');
@@ -42,7 +48,7 @@ class TemplateController
     {
         return View::render('pages/theme', [
             'title' => $title,
-            'header' => self::getHeader(),
+            'header' => self::getHead(),
             'content' => $content,
             'footer' => self::getFooter()
         ]);
